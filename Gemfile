@@ -27,6 +27,12 @@ group :test do
   gem 'webdrivers',         '4.1.2'
 end
 
+begin
+  require 'minitest/autorun'
+rescue LoadError => e
+  raise e unless ENV['RAILS_ENV'] == "production"
+end
+
 group :production do
   gem 'pg', '1.1.4'
 end
